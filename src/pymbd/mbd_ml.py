@@ -92,5 +92,7 @@ def mbd_properties_from_structure(atoms, beta, k_grid=None):
     if any(atoms.pbc):
         S = compute_stress_from_lattice_gradient(lattice_vecs, atom_pos, dE_dL, -F)
         return {'E' : E, 'F' : F, 'S' : S}
+    else:
+        return {'E' : E, 'F' : F}
 
 
