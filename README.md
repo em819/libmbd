@@ -40,6 +40,13 @@ conda install -c conda-forge 'libmbd=*=mpi_*' mpi4py
 pip install pymbd[mpi]
 ```
 
+If an installation with support for MBD-ML is desired, do
+
+```
+conda install -c conda-forge libmbd
+pip install pymbd[mbd-ml]
+```
+
 Verify installation with
 
 ```
