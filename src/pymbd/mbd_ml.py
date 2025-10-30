@@ -3,12 +3,25 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
+import sys
 import ase.io
 from ase.units import Bohr, Hartree
 from pymbd import from_volumes
 from pymbd.fortran  import MBDGeom
 from so3lr.cli.so3lr_eval import evaluate_so3lr_on
 import numpy as np
+
+try:
+    from ase.units import Bohr, Hartree
+except ImportError:
+    print('ase package cannot be imported but is required to use MBD-ML. Please install.')
+    sys.exit(1)
+
+try:
+    from so3lr.cli.so3lr_eval import evaluate_so3lr_on
+except ImportError:
+    print('so3lr package cannot be imported. Please reinstall pymbd via pip install ".[mbd-ml]"')
+    sys.exit(1)
 
 def ratios_from_mbdml(atoms):
     '''This function is a wrapper for the MBD-ML model, which predicts a0 and C6 ratios given a molecular or crystal structure'''
