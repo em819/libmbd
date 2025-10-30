@@ -4,14 +4,12 @@
 
 import os
 import sys
-import ase.io
-from ase.units import Bohr, Hartree
 from pymbd import from_volumes
 from pymbd.fortran  import MBDGeom
-from so3lr.cli.so3lr_eval import evaluate_so3lr_on
 import numpy as np
 
 try:
+    import ase.io
     from ase.units import Bohr, Hartree
 except ImportError:
     print('ase package cannot be imported but is required to use MBD-ML. Please install.')
@@ -30,14 +28,15 @@ def ratios_from_mbdml(atoms):
 
     ase.io.write(mbdml_in_filename, atoms, format='extxyz', write_info=True, write_results=True)
 
-    model_path="./mbd_ml_model/sv2j_b64_l2d_42e_16hh_10"
+    model_path=f"{os.path.dirname(os.path.realpath(__file__))}/mbd_ml_model/sv2j_b64_l2d_42e_16hh_10"
+    print(f'Path of model: {model_path}')
     _ = evaluate_so3lr_on(
-            datafile = so3lr_in_filename,
+            datafile = mbdml_in_filename,
             batch_size = 1,
             lr_cutoff = 0.1,
             dispersion_damping = 2.0,
             jit_compile = False,
-            save_to = so3lr_out_filename,
+            save_to = mbdml_out_filename,
             model_path = model_path,
             precision = "float32",
             targets = "hirshfeld_ratios,c6_ratios",
