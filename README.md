@@ -44,7 +44,7 @@ If an installation with support for MBD-ML is desired, do
 
 ```
 conda install -c conda-forge libmbd
-pip install pymbd[mbd-ml]
+pip install .[mbd-ml]
 ```
 
 Verify installation with
