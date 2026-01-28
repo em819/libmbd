@@ -28,7 +28,8 @@ def ratios_from_mbdml(atoms):
 
     ase.io.write(mbdml_in_filename, atoms, format='extxyz', write_info=True, write_results=True)
 
-    model_path=f"{os.path.dirname(os.path.realpath(__file__))}/mbd_ml_model/sv2j_b64_l2d_42e_16hh_10"
+    #model_path=f"{os.path.dirname(os.path.realpath(__file__))}/mbd_ml_model/sv2j_b128_l2d_42e_16hh_10_24novv"
+    model_path=f"{os.path.dirname(os.path.realpath(__file__))}/mbd_ml_model/sv2j_b64_l2d_42e_16hh_10_24novv"
     print(f'Path of model: {model_path}')
     _ = evaluate_so3lr_on(
             datafile = mbdml_in_filename,
