@@ -217,7 +217,7 @@ import ase.io
 
 urea = ase.io.read('urea.extxyz')
 
-mbd_ratios = ratios_from_mbdml(urea)
+mbd_ratios = pymbd.mbd_ml.ratios_from_mbdml(urea)
 
 a0 = mbd_ratios['a0']
 c6 = mbd_ratios['c6']
