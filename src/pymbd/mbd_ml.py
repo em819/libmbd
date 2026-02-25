@@ -48,6 +48,13 @@ def ratios_from_mbdml(atoms):
     c6 = atoms_eval.arrays["c6_ratios_so3lr"]
     a0 = atoms_eval.arrays["hirshfeld_ratios_so3lr"]
 
+    combined_ratios = np.concatenate([c6, a0])
+    ratio_min = 0.05
+    ratio_max = 3.0
+    if np.any((combined_ratios < ratio_min) | (combined_ratios > ratio_max)):
+        print(f"\n{'!'*50}\nWARNING: a0 or c6 ratios outside [{ratio_min}, {ratio_max}]!\nThis indicates that either your system is pathological or that the MBD-ML is\nextrapolating and th\
+at the result is potentially not reliable. Proceed with care!\n{'!'*50}")
+
     #Remove temporary xyz files, as otherwise so3lr eval fails in the second step
     if os.path.exists(mbdml_in_filename):
         os.remove(mbdml_in_filename)
