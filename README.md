@@ -47,6 +47,9 @@ conda install -c conda-forge libmbd
 pip install .[mbd-ml]
 ```
 
+To retrieve the exact dependencies used for the MBD-ML publication, 
+a `requirements.txt` file has been deposited in the `mbd_ml_paper/` directory.
+
 Verify installation with
 
 ```
